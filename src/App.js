@@ -20,6 +20,7 @@ import App1 from "./budgetplanner/App1.js";
 import TextUtil from "./textutils/TextUtil.js";
 import TodoApp from "./todolist/TodoApp.js";
 import Crudapp from "./crud/Crudapp.js";
+import Movieapp from "./MovieApp/Movieapp.js";
 
 
 
@@ -28,9 +29,9 @@ function App() {
   
   return (
     <div >
-   {/* // <TextUtil/> */}
-   {/* <TodoApp/> */}
-   <Crudapp />
+  <Movieapp/>
+
+  
   </div>
   )
 }
