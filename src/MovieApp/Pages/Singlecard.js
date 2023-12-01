@@ -6,7 +6,7 @@ import { Badge } from '@mui/material'
 function Singlecard({poster,title,type,date,rating}) {
   return (
     <div>
-        <div className='w-52  my-6 bg-white relative hover:scale-105 '>
+        <div className='sm:w-52  my-6 bg-white relative hover:scale-105 '>
         <Badge anchorOrigin={{
     vertical: 'top',
     horizontal: 'right',
