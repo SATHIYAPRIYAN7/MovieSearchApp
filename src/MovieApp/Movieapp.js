@@ -21,16 +21,16 @@ function Movieapp() {
          <Header/>
          <HomePage input={input} serach={search} setinput={setinput} setsearch={setsearch}/>
           <BrowserRouter>
-       { search?<Search search={search} />:<Container>
-          <Routes>
+       <Container>
+         { search?<Search search={search} />: <Routes>
              <Route path='/trending' element={<Trending/>} />
              <Route path='/movies' element={<Movies/>} />
              <Route path='/tv' element={<Tvseries/>} />
 
-          </Routes>
+          </Routes>}
 
-         </Container>}
-         <SimpleBottomNavigation />
+         </Container>
+         <SimpleBottomNavigation setsearch={setsearch} />
          </BrowserRouter>
         
 

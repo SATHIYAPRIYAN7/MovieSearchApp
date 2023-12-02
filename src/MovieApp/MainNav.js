@@ -13,7 +13,7 @@ import TvIcon from '@mui/icons-material/Tv';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-export default function SimpleBottomNavigation() {
+export default function SimpleBottomNavigation( {setsearch}) {
   const [value, setValue] = React.useState(0);
 
   const navi= useNavigate();
@@ -41,6 +41,7 @@ export default function SimpleBottomNavigation() {
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
+          setsearch("")
         }}
       >
         <BottomNavigationAction  style={{color:"white"}} label="Trending" icon={<Whatshot />} />
