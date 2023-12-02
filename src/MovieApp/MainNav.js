@@ -22,7 +22,7 @@ export default function SimpleBottomNavigation() {
   function handleClick(){
     if(value===0){navi("/trending")
 } else if(value===2){
-   navi("./tvseries")
+   navi("./tv")
 } else if(value===3){
   navi("./movies")
 }

@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 import Singlecard from './Singlecard';
 import { Pagination, Stack } from '@mui/material';
 
-function Trending() {
-
+function Search({search}) {
     const[page,setpage]=useState(1);
     const [data,setdata]=useState([])
+    const [nopages,setnopages]=useState()
     
 
     function handlepage(e){ 
@@ -17,8 +17,8 @@ function Trending() {
     }
 
 
-    useEffect(()=>{
-        const options = {
+   useEffect(()=>{
+         const options = {
             method: 'GET',
             headers: {
               accept: 'application/json',
@@ -26,20 +26,21 @@ function Trending() {
             }
           };
           
-          fetch(`https://api.themoviedb.org/3/trending/all/day?language=en-US&page=${page}`, options)
+        fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=${page}`, options)
             .then(response => response.json())
             .then(response =>{
                 console.log(response.results) 
-                setdata(response.results)}) 
+                setdata(response.results)
+                setnopages(response.total_pages)}) 
             .catch(err => console.error(err));
-    },[page])
+    },[page,search])
   return (
     <div className=' min-h-screen scroll-smooth text-white mt-20 w-full'>
      
-        <h1 className='text-center w-full text-3xl sm:text-4xl font-bold mb-3'>TRENDINGS</h1>
+        <h1 className='text-center w-full text-3xl sm:text-4xl font-bold mb-3'>Search Result</h1>
         <div className='flex w-full justify-around flex-wrap'>
         {
-           data && data.map((e)=>(
+          data && data.map((e)=>(
                <Singlecard key={e.id}  title={e.original_title || e.name} poster={e.poster_path} rating={e.vote_average} date={e.release_date || e.first_air_date} type={e.media_type} />
             ))
         }
@@ -51,7 +52,7 @@ function Trending() {
 
         <div className='flex justify-center w-full mt-4'>
 
-        <Pagination className='pb-40'
+       {  nopages>1 && <Pagination className='pb-40'
       count={10} onChange={(e)=>handlepage(e.target.textContent)} // Example count, replace with your actual count
       color="error" // Use a color from the Material-UI color palette
       sx={{
@@ -62,7 +63,7 @@ function Trending() {
           color: 'white', // Replace with your desired color for the selected page
         },
       }}
-    />
+    />}
 
     </div>
 
@@ -72,4 +73,4 @@ function Trending() {
   )
 }
 
-export default Trending
+export default Search

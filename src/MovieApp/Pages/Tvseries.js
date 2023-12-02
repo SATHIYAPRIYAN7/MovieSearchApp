@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import Singlecard from './Singlecard';
 import { Pagination, Stack } from '@mui/material';
 
-function Movies() {
-  const[page,setpage]=useState(1);
+function Tvseries() {
+    const[page,setpage]=useState(1);
     const [data,setdata]=useState([])
     const [nopages,setnopages]=useState()
 
@@ -25,7 +25,7 @@ function Movies() {
         }
       };
       
-      fetch(`https://api.themoviedb.org/3/discover/movie?language=en-US&page=${page}`, options)
+      fetch(`https://api.themoviedb.org/3/discover/tv?language=en-US&page=${page}`, options)
         .then(response => response.json())
         .then(response => {
             setdata(response.results)
@@ -37,11 +37,11 @@ function Movies() {
   return (
     <div className=' min-h-screen scroll-smooth text-white mt-20 w-full'>
      
-        <h1 className='text-center w-full text-3xl sm:text-4xl font-bold mb-3'>MOVIES</h1>
+        <h1 className='text-center w-full text-3xl sm:text-4xl font-bold mb-3'>TV SERIES</h1>
         <div className='flex w-full justify-around flex-wrap'>
         {
            data && data.map((e)=>(
-               <Singlecard key={e.id}  title={e.original_title || e.name} poster={e.poster_path} rating={e.vote_average} date={e.release_date || e.first_air_date} type={e.media_type} />
+               <Singlecard key={e.id}  title={e.original_title || e.name} poster={e.poster_path} rating={e.vote_average} date={e.release_date || e.first_air_date} type={"TV Series"} />
             ))
         }
         </div>
@@ -73,4 +73,4 @@ function Movies() {
   )
 }
 
-export default Movies
+export default Tvseries
